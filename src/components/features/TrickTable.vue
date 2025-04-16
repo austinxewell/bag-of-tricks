@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useMainStore } from "@/stores/useMainStore";
+import DirectionTag from "@/components/common/DirectionTag.vue";
 
 const store = useMainStore();
-const { bag } = storeToRefs(store);
+const sortedBag = computed(() =>
+  [...store.bag].sort((a, b) => a.name.localeCompare(b.name))
+);
 
 const renderStars = (difficulty: number): string[] => {
   const stars = [];
@@ -29,11 +33,14 @@ const renderStars = (difficulty: number): string[] => {
       </thead>
       <tbody>
         <tr
-          v-for="trick in bag"
+          v-for="trick in sortedBag"
           :key="trick.id || trick.name"
           class="border-t border-gray-200 dark:border-gray-700"
         >
-          <td class="px-4 py-2 border-r">{{ trick.name }}</td>
+          <td class="px-4 py-2 border-r">
+            <DirectionTag :direction="trick.direction" />
+            {{ trick.name }}
+          </td>
           <td class="px-4 py-2 border-r">{{ trick.terrain.join(", ") }}</td>
           <td class="px-4 py-2 border-r">{{ trick.trickType.join(", ") }}</td>
           <td class="px-4 py-2">

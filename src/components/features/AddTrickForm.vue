@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useMainStore } from "@/stores/useMainStore";
-import type { Trick, Terrain, TrickType } from "@/types/Tricks";
+import type { Trick, Terrain, TrickType, TrickDirection } from "@/types/Tricks";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { useToast } from "@/composables/useToast";
 
-const { showSuccess, showError } = useToast();
+const { showError } = useToast();
 const store = useMainStore();
 
 // Form fields
@@ -14,6 +14,7 @@ const trickName = ref("");
 const selectedTerrains = ref<Terrain[]>([]);
 const selectedTypes = ref<TrickType[]>([]);
 const difficulty = ref(1);
+const selectedDirection = ref<TrickDirection>("N/A");
 
 // Validation
 const errors = ref({
@@ -21,6 +22,7 @@ const errors = ref({
   terrains: false,
   trickTypes: false,
   difficulty: false,
+  direction: false,
 });
 
 const terrainOptions: Terrain[] = store.defaultTerrains;
@@ -31,6 +33,7 @@ const resetForm = () => {
   selectedTerrains.value = [];
   selectedTypes.value = [];
   difficulty.value = 1;
+  selectedDirection.value = "N/A";
 };
 
 const validateForm = (): boolean => {
@@ -40,6 +43,7 @@ const validateForm = (): boolean => {
     terrains: false,
     trickTypes: false,
     difficulty: false,
+    direction: false,
   };
 
   let isValid = true;
@@ -64,6 +68,11 @@ const validateForm = (): boolean => {
     isValid = false;
   }
 
+  if (!selectedDirection.value) {
+    errors.value.direction = true;
+    isValid = false;
+  }
+
   return isValid;
 };
 
@@ -75,13 +84,13 @@ const submitTrick = () => {
 
   const newTrick: Trick = {
     name: trickName.value,
+    direction: selectedDirection.value,
     terrain: selectedTerrains.value,
     trickType: selectedTypes.value,
     difficulty: difficulty.value,
   };
 
   store.addToBag(newTrick);
-  showSuccess("Trick added!");
   resetForm();
 };
 </script>
@@ -100,6 +109,31 @@ const submitTrick = () => {
       <span v-if="errors.trickName" class="text-red-500 text-sm"
         >Trick name is required</span
       >
+    </div>
+
+    <!-- Front Side Or Back Side -->
+    <div>
+      <p class="font-semibold mb-2">Direction:</p>
+      <div class="flex gap-2">
+        <Button
+          v-for="option in ['Front Side', 'Back Side', 'N/A']"
+          :key="option"
+          variant="outline"
+          size="sm"
+          :class="[
+            selectedDirection === option
+              ? 'dark:bg-white dark:text-black bg-black text-white border-black'
+              : 'bg-white text-black border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600',
+          ]"
+          @click="selectedDirection = option"
+          type="button"
+        >
+          {{ option }}
+        </Button>
+      </div>
+      <span v-if="errors.direction" class="text-red-500 text-sm">
+        Direction is required
+      </span>
     </div>
 
     <!-- Terrain Selection -->

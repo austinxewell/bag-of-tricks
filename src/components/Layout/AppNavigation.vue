@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useDark, useToggle } from "@vueuse/core";
 import { Button } from "@/components/ui/button";
 import AddTrick from "@/components/features/AddTrickSheet.vue";
+import EditBag from "@/components/features/EditTrickSheet.vue";
 import ViewBag from "@/components/features/ViewBag.vue";
 import {
   DropdownMenu,
@@ -14,8 +15,8 @@ import {
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 
-// Control the Sheet
 const isAddTrickOpen = ref(false);
+const isEditBagOpen = ref(false);
 const isViewBagOpen = ref(false);
 </script>
 
@@ -42,12 +43,15 @@ const isViewBagOpen = ref(false);
             Add Trick
           </DropdownMenuItem>
 
-          <DropdownMenuItem>Edit The Goods</DropdownMenuItem>
+          <DropdownMenuItem @click="isEditBagOpen = true">
+            Edit The Goods
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
   </nav>
 
   <AddTrick v-model="isAddTrickOpen" />
+  <EditBag v-model="isEditBagOpen" />
   <ViewBag v-model="isViewBagOpen" />
 </template>
