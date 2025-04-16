@@ -1,17 +1,21 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { useDark, useToggle } from "@vueuse/core";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import AddTrick from "@/components/features/AddTrickSheet.vue";
+
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
+
+// Control the Sheet
+const isAddTrickOpen = ref(false);
 </script>
 
 <template>
@@ -30,10 +34,15 @@ const toggleDark = useToggle(isDark);
       <DropdownMenu>
         <DropdownMenuTrigger>Modify Your Bag</DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem>Add To Bag</DropdownMenuItem>
+          <DropdownMenuItem @click="isAddTrickOpen = true">
+            Add Trick
+          </DropdownMenuItem>
+
           <DropdownMenuItem>Edit The Goods</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
   </nav>
+
+  <AddTrick v-model="isAddTrickOpen" />
 </template>

@@ -15,14 +15,12 @@ export const useMainStore = defineStore("main", {
         this.saveBagToLocalStorage();
       }
     },
-
     removeFromBag(trickName: string) {
       this.bag = this.bag.filter((t) => t.name !== trickName);
     },
     saveBagToLocalStorage() {
       localStorage.setItem("bagOfTricks", JSON.stringify(this.bag));
     },
-
     loadBagFromLocalStorage() {
       const savedBag = localStorage.getItem("bagOfTricks");
       if (savedBag) {
