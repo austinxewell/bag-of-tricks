@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import AppHeader from "@/components/layout/AppHeader.vue";
 import BagOfTricks from "@/components/layout/BagOfTricks.vue";
+import { useMainStore } from "@/stores/useMainStore";
+
+const store = useMainStore();
+
+store.loadBagFromLocalStorage();
 </script>
 
 <template>

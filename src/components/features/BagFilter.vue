@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import CheckboxFilterDropdown from "@/components/common/CheckboxFilterDropdown.vue";
 import { Button } from "@/components/ui/button";
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { useMainStore } from "@/stores/useMainStore";
+
+const store = useMainStore();
 
 const terrainOptions = [
   "Flatground",
@@ -15,11 +18,26 @@ const trickOptions = ["Flip", "Grind", "Grab", "Stall", "Manual"];
 
 const selectedTerrains = ref<string[]>([]);
 const selectedTricks = ref<string[]>([]);
+
+watch(selectedTerrains, (newVal) => {
+  store.selectedTerrains = [...newVal];
+});
+
+watch(selectedTricks, (newVal) => {
+  store.selectedTricks = [...newVal];
+});
+
+const clearAllFilters = () => {
+  selectedTerrains.value = [];
+  selectedTricks.value = [];
+};
 </script>
 
 <template>
   <div>
-    <h3 class="text-2xl mb-4">Filter Bag:</h3>
+    <h3 class="text-2xl mb-4 pb-2 border-b border-primary text-center">
+      Sort Your Bag
+    </h3>
 
     <div class="flex gap-4">
       <CheckboxFilterDropdown
@@ -45,9 +63,13 @@ const selectedTricks = ref<string[]>([]);
         {{ selectedTricks.join(", ") || "None" }}
       </p>
 
-      <Button class="hover:cursor-pointer" variant="destructive"
-        >Clear All</Button
+      <Button
+        class="hover:cursor-pointer"
+        variant="destructive"
+        @click="clearAllFilters"
       >
+        Clear All
+      </Button>
     </div>
   </div>
 </template>
