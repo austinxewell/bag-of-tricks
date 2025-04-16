@@ -6,15 +6,9 @@ import { useMainStore } from "@/stores/useMainStore";
 
 const store = useMainStore();
 
-const terrainOptions = [
-  "Flatground",
-  "Rail/Ledge",
-  "Stair/Gap",
-  "Vert/Transition",
-  "Manny Pad/Bank",
-];
+const terrainOptions = store.defaultTerrains;
 
-const trickOptions = ["Flip", "Grind", "Grab", "Stall", "Manual"];
+const trickOptions = store.defaultTrickTypes;
 
 const selectedTerrains = ref<string[]>([]);
 const selectedTricks = ref<string[]>([]);

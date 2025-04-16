@@ -5,7 +5,6 @@ import { useMainStore } from "@/stores/useMainStore";
 const store = useMainStore();
 const { bag } = storeToRefs(store);
 
-// Optional: Create a reusable function for rendering stars
 const renderStars = (difficulty: number): string[] => {
   const stars = [];
   for (let i = 1; i <= 5; i++) {

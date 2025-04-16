@@ -5,6 +5,14 @@ export const useMainStore = defineStore("main", {
   state: () => ({
     selectedTerrains: [] as string[],
     selectedTricks: [] as string[],
+    defaultTerrains: [
+      "Flatground",
+      "Rail/Ledge",
+      "Stair/Gap",
+      "Vert/Transition",
+      "Manny Pad/Bank",
+    ],
+    defaultTrickTypes: ["Flip", "Grind", "Grab", "Stall", "Manual"],
     bag: [] as Trick[],
   }),
   actions: {

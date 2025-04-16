@@ -23,20 +23,8 @@ const errors = ref({
   difficulty: false,
 });
 
-const terrainOptions: Terrain[] = [
-  "Flateground",
-  "Rail/Ledge",
-  "Stair/Gap",
-  "Vert/Transition",
-  "Manny Pad/Bank",
-];
-const trickTypeOptions: TrickType[] = [
-  "Flip",
-  "Grab",
-  "Slide",
-  "Grind",
-  "Manual",
-];
+const terrainOptions: Terrain[] = store.defaultTerrains;
+const trickTypeOptions: TrickType[] = store.defaultTrickTypes;
 
 const resetForm = () => {
   trickName.value = "";
@@ -99,7 +87,7 @@ const submitTrick = () => {
 </script>
 
 <template>
-  <form @submit.prevent="submitTrick" class="flex flex-col gap-4 mt-4">
+  <form @submit.prevent="submitTrick" class="flex flex-col gap-4">
     <!-- Trick Name -->
     <div>
       <input

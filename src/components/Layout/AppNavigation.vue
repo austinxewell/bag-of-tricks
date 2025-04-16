@@ -36,7 +36,7 @@ const isViewBagOpen = ref(false);
       </Button>
 
       <DropdownMenu>
-        <DropdownMenuTrigger>Modify Your Bag</DropdownMenuTrigger>
+        <DropdownMenuTrigger class="mt-2">Modify Your Bag</DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem @click="isAddTrickOpen = true">
             Add Trick
