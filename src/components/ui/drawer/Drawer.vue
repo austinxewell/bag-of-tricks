@@ -3,13 +3,16 @@ import type { DrawerRootEmits, DrawerRootProps } from 'vaul-vue'
 import { useForwardPropsEmits } from 'reka-ui'
 import { DrawerRoot } from 'vaul-vue'
 
+// Define props with defaults
 const props = withDefaults(defineProps<DrawerRootProps>(), {
   shouldScaleBackground: true,
 })
 
+// Define emits
 const emits = defineEmits<DrawerRootEmits>()
 
-const forwarded = useForwardPropsEmits(props, emits)
+// Forward props and emits and explicitly type it
+const forwarded: Record<string, any> = useForwardPropsEmits(props, emits)
 </script>
 
 <template>

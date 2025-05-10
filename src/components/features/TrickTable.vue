@@ -1,13 +1,34 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { storeToRefs } from "pinia";
+import { Icon } from "@iconify/vue";
+import { ref } from "vue";
 import { useMainStore } from "@/stores/useMainStore";
 import DirectionTag from "@/components/common/DirectionTag.vue";
 
 const store = useMainStore();
-const sortedBag = computed(() =>
-  [...store.bag].sort((a, b) => a.name.localeCompare(b.name))
-);
+// const sortedBag = computed(() =>
+//   [...store.bag].sort((a, b) => a.name.localeCompare(b.name))
+// );
+let sortedBag = ref([...store.bag]);
+
+const sortDirection = ref<"asc" | "desc">("asc");
+
+const toggleSortDirection = () => {
+  sortDirection.value = sortDirection.value === "asc" ? "desc" : "asc";
+
+  console.log("Before sorting:", [...store.bag]);
+
+  // Create a copy of the array, sort it, and assign the result back to sortedBag
+  const sorted = [...store.bag].sort((a, b) => {
+    const result = a.name.localeCompare(b.name);
+    return sortDirection.value === "asc" ? result : -result;
+  });
+
+  // Log the sorted array to ensure no items are being added
+  console.log("Sorted:", sorted);
+
+  // Update sortedBag with the sorted array
+  sortedBag.value = sorted;
+};
 
 const renderStars = (difficulty: number): string[] => {
   const stars = [];
@@ -25,7 +46,16 @@ const renderStars = (difficulty: number): string[] => {
     >
       <thead class="bg-gray-100 dark:bg-gray-800">
         <tr>
-          <th class="px-4 py-2 text-left border-r">Name</th>
+          <th class="px-4 py-2 text-left border-r">
+            <div class="flex items-center justify-between w-full">
+              <span>Name</span>
+              <Icon
+                icon="lucide:arrow-up-down"
+                class="hover:cursor-pointer ml-2"
+                @click="toggleSortDirection"
+              />
+            </div>
+          </th>
           <th class="px-4 py-2 text-left border-r">Terrain(s)</th>
           <th class="px-4 py-2 text-left border-r">Trick Type(s)</th>
           <th class="px-4 py-2 text-left">Difficulty</th>
@@ -34,7 +64,7 @@ const renderStars = (difficulty: number): string[] => {
       <tbody>
         <tr
           v-for="trick in sortedBag"
-          :key="trick.id || trick.name"
+          :key="trick.name"
           class="border-t border-gray-200 dark:border-gray-700"
         >
           <td class="px-4 py-2 border-r">

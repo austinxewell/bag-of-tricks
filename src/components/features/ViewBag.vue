@@ -3,13 +3,10 @@ import TrickTable from "@/components/features/TrickTable.vue";
 import { defineProps, defineEmits } from "vue";
 import {
   Drawer,
-  DrawerTrigger,
   DrawerContent,
-  DrawerClose,
   DrawerHeader,
   DrawerTitle,
   DrawerDescription,
-  DrawerFooter,
 } from "@/components/ui/drawer";
 
 const props = defineProps({
