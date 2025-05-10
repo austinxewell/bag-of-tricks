@@ -1,6 +1,6 @@
 <!-- src/App.vue -->
 <script setup lang="ts">
-import MainLayout from "@/layout/MainLayout.vue";
+import MainLayout from "@/layouts/MainLayout.vue";
 </script>
 
 <template>
