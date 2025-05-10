@@ -1,6 +1,6 @@
 # Bag of Tricks
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1cbe50d2-52ae-4b88-9c5f-9ff2d5a1f1e4/deploy-status)](https://app.netlify.com/sites/profound-stardust-16a045/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c540926f-e116-40fe-8bde-80de7e977eff/deploy-status)](https://app.netlify.com/sites/profound-stardust-16a045/deploys)(https://app.netlify.com/sites/profound-stardust-16a045/deploys)
 ![Vue 3](https://img.shields.io/badge/Vue-3.x-42b883?style=flat-square&logo=vue.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?style=flat-square&logo=typescript)
 ![Pinia](https://img.shields.io/badge/State-Pinia-yellow?style=flat-square&logo=pinia)
@@ -79,3 +79,30 @@ The app is fully client-side, leveraging `localStorage` to store data persistent
 git clone https://github.com/austinxewell/bag-of-tricks.git
 cd bag-of-tricks
 npm install
+```
+
+### Run Dev Server
+
+```bash
+npm run dev
+```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+---
+
+## 👨‍💻 Author
+
+**Austin Ewell**  
+Front End Developer | Creator of **Bag of Tricks**  
+🔗 [GitHub](https://github.com/austinxewell)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
