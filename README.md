@@ -6,7 +6,7 @@
 ![Pinia](https://img.shields.io/badge/State-Pinia-yellow?style=flat-square&logo=pinia)
 ![License](https://img.shields.io/github/license/austinxewell/bag-of-tricks?style=flat-square)
 
-> A slick, offline-first trick selector app with full CRUD, advanced filtering, and dynamic UX — all built without a backend.
+> A responsive, offline-first trick selection tool with full CRUD support, advanced filters, and a clean, modern UI—all built client-side with Vue 3 and TypeScript.
 
 ![Bag Of Tricks - Landing](https://i.postimg.cc/HL7Lvkvb/bot-landing-light.png)
 
@@ -14,43 +14,42 @@
 
 ## 🔗 Live Demo
 
-**[➡️ View Deployed App on Netlify](https://profound-stardust-16a045.netlify.app/)**
+**[View the App on Netlify](https://profound-stardust-16a045.netlify.app/)**
 
 ---
 
 ## 📦 About the Project
 
-**Bag of Tricks** is a fully client-side single-page app (SPA) designed to help users create and manage their own custom trick library. It’s ideal for skaters, martial artists, dancers, or anyone who trains tricks and needs a focused, filterable selection tool.
+**Bag of Tricks** is a standalone trick selector built entirely with frontend technologies. It enables users to create, categorize, and filter their own list of tricks for training purposes. Designed for skaters, martial artists, dancers, or anyone who needs a customizable move library.
 
-The app is engineered with a clean architecture using Vue 3 + TypeScript, and stores user data entirely in `localStorage`, meaning **no login, no backend, no bullshit** — just fast, offline-capable performance and full control for the user.
+The app is fully client-side, leveraging `localStorage` to store data persistently without a backend. It supports advanced filtering by user-defined attributes and provides a polished user experience with responsive design and dark mode.
 
 ---
 
 ## ⚙️ Features
 
-- ✅ **Create, Read, Update, Delete (CRUD)** your tricks
-- 🧠 **Pinia** for global state, persisted with `localStorage`
-- 🌗 **Dark mode** toggle that respects system preferences
-- 🔍 **Advanced filtering** (e.g., terrain, type)
-- 🚫 **Error handling** and form validation baked in
-- 📲 **Fully responsive** design for mobile + desktop
-- 💨 **Zero backend**, full offline functionality
-- 🎨 Built with **Nuxt UI**, **VueUse**, and modern Composition API
+- 📝 Full **CRUD** (Create, Read, Update, Delete) capabilities
+- 🧠 **Pinia** state management with localStorage persistence
+- 🌙 **Dark mode** support
+- 🔍 **Advanced filtering** (e.g., terrain, trick type)
+- ✅ Real-time **form validation** with success/error feedback
+- 📱 Fully **responsive** layout
+- 🕹️ **Client-side only**: No backend or authentication required
 
 ---
 
 ## 🛠 Tech Stack
 
-| Tech              | Purpose                     |
-|-------------------|------------------------------|
-| **Vue 3**         | SPA Framework (Composition API) |
-| **TypeScript**    | Type safety & clarity        |
-| **Pinia**         | Global state management      |
-| **Vue Router**    | Page navigation              |
-| **Nuxt UI**       | Pre-styled components        |
-| **VueUse**        | Utility composables          |
-| **localStorage**  | Data persistence             |
-| **Vue3 Carousel** | Carousel UI component        |
+| Technology         | Purpose                         |
+|--------------------|----------------------------------|
+| **Vue 3**          | Frontend framework (Composition API) |
+| **TypeScript**     | Type safety and clarity          |
+| **Pinia**          | State management                 |
+| **Vue Router**     | Page navigation                  |
+| **Nuxt UI**        | UI component library             |
+| **VueUse**         | Utility composables              |
+| **localStorage**   | Data persistence                 |
+| **Vue3 Carousel**  | Carousel UI                      |
 
 ---
 
