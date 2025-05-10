@@ -4,7 +4,6 @@
 ![Vue 3](https://img.shields.io/badge/Vue-3.x-42b883?style=flat-square&logo=vue.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?style=flat-square&logo=typescript)
 ![Pinia](https://img.shields.io/badge/State-Pinia-yellow?style=flat-square&logo=pinia)
-![License](https://img.shields.io/github/license/austinxewell/bag-of-tricks?style=flat-square)
 
 > A responsive, offline-first trick selection tool with full CRUD support, advanced filters, and a clean, modern UI—all built client-side with Vue 3 and TypeScript.
 
