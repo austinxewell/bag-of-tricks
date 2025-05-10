@@ -1,6 +1,6 @@
 # Bag of Tricks
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c540926f-e116-40fe-8bde-80de7e977eff/deploy-status)](https://app.netlify.com/sites/profound-stardust-16a045/deploys)(https://app.netlify.com/sites/profound-stardust-16a045/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c540926f-e116-40fe-8bde-80de7e977eff/deploy-status)](https://app.netlify.com/sites/profound-stardust-16a045/deploys)
 ![Vue 3](https://img.shields.io/badge/Vue-3.x-42b883?style=flat-square&logo=vue.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?style=flat-square&logo=typescript)
 ![Pinia](https://img.shields.io/badge/State-Pinia-yellow?style=flat-square&logo=pinia)
