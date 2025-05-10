@@ -10,10 +10,10 @@ const { showError } = useToast();
 const store = useMainStore();
 
 // Form fields
-const trickName = ref("");
+const trickName = ref<string>("");
 const selectedTerrains = ref<Terrain[]>([]);
 const selectedTypes = ref<TrickType[]>([]);
-const difficulty = ref(1);
+const difficulty = ref<1 | 2 | 3 | 4 | 5>(1);
 const selectedDirection = ref<TrickDirection>("N/A");
 
 // Validation
@@ -25,8 +25,8 @@ const errors = ref({
   direction: false,
 });
 
-const terrainOptions: Terrain[] = store.defaultTerrains;
-const trickTypeOptions: TrickType[] = store.defaultTrickTypes;
+const terrainOptions = store.defaultTerrains as Terrain[];
+const trickTypeOptions = store.defaultTrickTypes as TrickType[];
 
 const resetForm = () => {
   trickName.value = "";
@@ -37,43 +37,15 @@ const resetForm = () => {
 };
 
 const validateForm = (): boolean => {
-  // Reset all errors
   errors.value = {
-    trickName: false,
-    terrains: false,
-    trickTypes: false,
-    difficulty: false,
-    direction: false,
+    trickName: !trickName.value,
+    terrains: selectedTerrains.value.length === 0,
+    trickTypes: selectedTypes.value.length === 0,
+    difficulty: difficulty.value < 1 || difficulty.value > 5,
+    direction: !selectedDirection.value,
   };
 
-  let isValid = true;
-
-  if (!trickName.value) {
-    errors.value.trickName = true;
-    isValid = false;
-  }
-
-  if (selectedTerrains.value.length === 0) {
-    errors.value.terrains = true;
-    isValid = false;
-  }
-
-  if (selectedTypes.value.length === 0) {
-    errors.value.trickTypes = true;
-    isValid = false;
-  }
-
-  if (difficulty.value < 1 || difficulty.value > 5) {
-    errors.value.difficulty = true;
-    isValid = false;
-  }
-
-  if (!selectedDirection.value) {
-    errors.value.direction = true;
-    isValid = false;
-  }
-
-  return isValid;
+  return !Object.values(errors.value).includes(true);
 };
 
 const submitTrick = () => {
@@ -106,12 +78,10 @@ const submitTrick = () => {
         class="p-2 w-full border rounded"
         :class="{ 'border-red-500': errors.trickName }"
       />
-      <span v-if="errors.trickName" class="text-red-500 text-sm"
-        >Trick name is required</span
-      >
+      <span v-if="errors.trickName" class="text-red-500 text-sm">Trick name is required</span>
     </div>
 
-    <!-- Front Side Or Back Side -->
+    <!-- Direction -->
     <div>
       <p class="font-semibold mb-2">Direction:</p>
       <div class="flex gap-2">
@@ -125,15 +95,13 @@ const submitTrick = () => {
               ? 'dark:bg-white dark:text-black bg-black text-white border-black'
               : 'bg-white text-black border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600',
           ]"
-          @click="selectedDirection = option"
+          @click="selectedDirection = option as TrickDirection"
           type="button"
         >
           {{ option }}
         </Button>
       </div>
-      <span v-if="errors.direction" class="text-red-500 text-sm">
-        Direction is required
-      </span>
+      <span v-if="errors.direction" class="text-red-500 text-sm">Direction is required</span>
     </div>
 
     <!-- Terrain Selection -->
@@ -154,9 +122,7 @@ const submitTrick = () => {
           <span>{{ option }}</span>
         </label>
       </div>
-      <span v-if="errors.terrains" class="text-red-500 text-sm"
-        >At least one terrain is required</span
-      >
+      <span v-if="errors.terrains" class="text-red-500 text-sm">At least one terrain is required</span>
     </div>
 
     <!-- Trick Type Selection -->
@@ -177,9 +143,7 @@ const submitTrick = () => {
           <span>{{ option }}</span>
         </label>
       </div>
-      <span v-if="errors.trickTypes" class="text-red-500 text-sm"
-        >At least one trick type is required</span
-      >
+      <span v-if="errors.trickTypes" class="text-red-500 text-sm">At least one trick type is required</span>
     </div>
 
     <!-- Difficulty Slider -->
@@ -192,15 +156,13 @@ const submitTrick = () => {
         :step="1"
         class="w-full"
         :class="{ 'border-red-500': errors.difficulty }"
-        @update:modelValue="difficulty = $event[0]"
+        @update:modelValue="(val) => { if (val && val[0] !== undefined) difficulty = val[0] as 1 | 2 | 3 | 4 | 5 }"
       />
       <div class="flex justify-between text-sm mt-1">
         <span>1</span>
         <span>5</span>
       </div>
-      <span v-if="errors.difficulty" class="text-red-500 text-sm"
-        >Please select a valid difficulty</span
-      >
+      <span v-if="errors.difficulty" class="text-red-500 text-sm">Please select a valid difficulty</span>
     </div>
 
     <!-- Submit Button -->
